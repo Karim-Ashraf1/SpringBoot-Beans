@@ -1,0 +1,143 @@
+:root {
+  --bg-dark: #0d1117;
+  --bg-panel: #161b22;
+  --bg-code: #0d1117;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --red: #f85149;
+  --red-bg: rgba(248, 81, 73, 0.15);
+  --green: #3fb950;
+  --green-bg: rgba(63, 185, 80, 0.15);
+  --yellow: #d29922;
+  --yellow-bg: rgba(210, 153, 34, 0.2);
+  --accent: #58a6ff;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: var(--font-sans);
+  background: var(--bg-dark);
+  color: var(--text);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Error panel */
+.error-panel {
+  background: #3d1f1f;
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #fca5a5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Tab buttons */
+.tabs-row {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+  background: var(--bg-panel);
+}
+
+.tab-btn {
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* IoC diagram */
+.ioc-diagram {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.ioc-box {
+  fill: var(--bg-panel);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.ioc-box.failure {
+  stroke: var(--red);
+  animation: flash-red 1s ease-in-out infinite;
+}
+
+.ioc-box.proxy,
+.ioc-box.reused {
+  stroke: var(--yellow);
+  fill: var(--yellow-bg);
+}
+
+.arrow-reused {
+  stroke: var(--yellow);
+  fill: none;
+  stroke-width: 2;
+}
+
+@keyframes flash-red {
+  0%, 100% { stroke: var(--red); opacity: 1; }
+  50% { stroke: #ff6b6b; opacity: 0.85; }
+}
+
+.arrow-resolved {
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2;
+}
+
+.arrow-failure {
+  stroke: var(--red);
+  fill: none;
+  stroke-width: 2;
+  animation: flash-red 1s ease-in-out infinite;
+}
+
+.arrow-proxy {
+  stroke: var(--yellow);
+  fill: none;
+  stroke-width: 2;
+}
