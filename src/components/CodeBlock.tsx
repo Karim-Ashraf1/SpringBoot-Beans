@@ -30,6 +30,8 @@ export function CodeBlock({
   }, [code])
 
   const lineCount = code.split('\n').length
+  // Match pre: padding 1rem, line-height 1.6 (unitless) => 1.6 * 0.8125rem ≈ 1.3rem per line
+  const lineHeightRem = 1.3
 
   return (
     <motion.div
@@ -77,7 +79,7 @@ export function CodeBlock({
               padding: '1rem 1rem 1rem 0.5rem',
               background: 'var(--bg-code)',
               fontSize: '0.8125rem',
-              lineHeight: 1.6,
+              lineHeight: `${lineHeightRem}rem`,
               fontFamily: 'var(--font-mono)',
               borderRadius: '0 0 8px 8px',
               overflow: 'hidden',
@@ -110,7 +112,10 @@ export function CodeBlock({
                   <div
                     key={lineNum}
                     className={`line-highlight ${isProblem ? 'line-highlight-problem' : ''} ${isSolution ? 'line-highlight-solution' : ''}`}
-                    style={{ top: `${(i + 1) * 1.6 - 0.2}rem` }}
+                    style={{
+                      top: `${1 + i * lineHeightRem}rem`,
+                      height: `${lineHeightRem}rem`,
+                    }}
                   />
                 )
               })}

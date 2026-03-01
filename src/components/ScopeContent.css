@@ -65,3 +65,37 @@
   margin: 0;
   white-space: pre-wrap;
 }
+
+@media (max-width: 900px) {
+  .scope-content {
+    height: auto;
+    min-height: 260px;
+    overflow: visible;
+    padding: 0.6rem 0.75rem 0.75rem;
+  }
+
+  .scope-content-title {
+    font-size: 0.9375rem;
+  }
+
+  .scope-content-tabs-row .tab-btn {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .scope-content-body {
+    min-height: 200px;
+    overflow: visible;
+  }
+
+  .scope-content-pane {
+    height: auto;
+    min-height: 200px;
+  }
+
+  .scope-content-scroll {
+    min-height: 200px;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}

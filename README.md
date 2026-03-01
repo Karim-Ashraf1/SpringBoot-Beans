@@ -12,8 +12,6 @@ A minimal **visualization** for Spring Boot **scope injection into singleton** p
 - **Left**: Animated **Spring IoC Container** diagram that updates with the selected scope (request/session not active, or prototype same-instance reused).  
 - **Right**: Section title *"&lt;Scope&gt; injected into Singleton"* and tabs: **Broken Code** | **Error Output** | **Fixed Code** | **Enterprise Impact**.  
 
-No horizontal scrollbars; code blocks wrap long lines. Layout is a two-column grid on desktop and stacks on mobile, with equal-height cards.
-
 ## Run locally
 
 ```bash

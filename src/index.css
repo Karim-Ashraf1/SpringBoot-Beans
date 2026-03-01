@@ -22,17 +22,38 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   font-family: var(--font-sans);
   background: var(--bg-dark);
   color: var(--text);
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Desktop: lock to viewport, no page scroll */
+@media (min-width: 901px) {
+  body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
 #root {
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+}
+
+/* Mobile: allow page scroll so entire site is accessible */
+@media (max-width: 900px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  #root {
+    overflow: visible;
+  }
 }
 
 /* Hide scrollbar but allow scroll */

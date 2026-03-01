@@ -44,7 +44,7 @@ class CartContext {
     void addItem(String id) { items.add(id); }
 }`,
     brokenFilename: 'OrderService.java',
-    brokenHighlightLines: [10, 11, 12, 28, 29],
+    brokenHighlightLines: [12, 13, 14, 15, 23],
     errorMessage: `Error creating bean with name 'orderService': Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'cartContext': Scope 'request' is not active for the current thread; consider defining a scoped proxy for this bean if you intend to refer to it from a singleton.`,
     fixedCode: `package com.example.order;
 
@@ -76,7 +76,7 @@ class CartContext {
     void addItem(String id) { items.add(id); }
 }`,
     fixedFilename: 'OrderService.java',
-    fixedHighlightLines: [28],
+    fixedHighlightLines: [5, 24],
     enterpriseImpact:
       'A singleton is created once at startup. A request-scoped bean is created per HTTP request. The container cannot inject a request-scoped bean directly into a singleton constructor because no request exists at startup. Using ScopedProxyMode.TARGET_CLASS injects a proxy that delegates to the real request-scoped instance when a request is active.',
   },
@@ -111,7 +111,7 @@ class UserCart {
     void addItem(String id) { items.add(id); }
 }`,
     brokenFilename: 'CartService.java',
-    brokenHighlightLines: [10, 11, 12, 28, 29],
+    brokenHighlightLines: [12, 13, 14,15,23],
     errorMessage: `Error creating bean with name 'cartService': Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userCart': Scope 'session' is not active for the current thread; consider defining a scoped proxy for this bean if you intend to refer to it from a singleton.`,
     fixedCode: `package com.example.shop;
 
@@ -143,7 +143,7 @@ class UserCart {
     void addItem(String id) { items.add(id); }
 }`,
     fixedFilename: 'CartService.java',
-    fixedHighlightLines: [28],
+    fixedHighlightLines: [5, 24],
     enterpriseImpact:
       'A singleton is created once at startup. A session-scoped bean is created per HTTP session. The container cannot inject a session-scoped bean directly into a singleton constructor because no session exists at startup. Using ScopedProxyMode.TARGET_CLASS injects a proxy that delegates to the real session-scoped instance when a session is active.',
   },
@@ -178,7 +178,7 @@ class TaskIdGenerator {
     public String nextId() { return "task-" + (++counter); }
 }`,
     brokenFilename: 'BatchProcessor.java',
-    brokenHighlightLines: [10, 11, 12, 24, 25, 26],
+    brokenHighlightLines: [10, 11, 12, 13, 23],
     errorMessage: `(No exception; wrong behavior at runtime.)
 Each call to taskIdGenerator.nextId() uses the SAME prototype instance because the prototype was injected once when the singleton was created. You get "task-1", "task-2" from the same bean instance, not a fresh instance per use.`,
     fixedCode: `package com.example.batch;
@@ -213,7 +213,7 @@ class TaskIdGenerator {
     public String nextId() { return "task-" + (++counter); }
 }`,
     fixedFilename: 'BatchProcessor.java',
-    fixedHighlightLines: [12, 13, 14, 20, 21, 22],
+    fixedHighlightLines: [3, 11, 12, 13, 14, 18, 19],
     enterpriseImpact:
       'Injecting a prototype into a singleton gives you one prototype instance for the lifetime of the singleton. ObjectProvider.getObject() asks the container for a fresh bean each time, so you get a new prototype instance per call. Use this when the singleton must obtain a new prototype instance on each use.',
   },
