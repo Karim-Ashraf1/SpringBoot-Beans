@@ -69,37 +69,36 @@ export function CodeBlock({
             )
           })}
         </div>
-        <div className="code-block-content">
-          <SyntaxHighlighter
-            language={language}
-            style={oneDark}
-            showLineNumbers={false}
-            customStyle={{
-              margin: 0,
-              padding: '1rem 1rem 1rem 0.5rem',
-              background: 'var(--bg-code)',
-              fontSize: '0.8125rem',
-              lineHeight: `${lineHeightRem}rem`,
-              fontFamily: 'var(--font-mono)',
-              borderRadius: '0 0 8px 8px',
-              overflow: 'hidden',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-word',
-            }}
-            codeTagProps={{
-              style: {
-                fontFamily: 'inherit',
-                whiteSpace: 'pre-wrap',
-                wordBreak: 'break-word',
-              },
-            }}
-            lineNumberStyle={{ minWidth: '2em' }}
-            wrapLongLines
-          >
-            {code}
-          </SyntaxHighlighter>
-          {highlightLines.length > 0 && highlightKind !== 'none' && (
-            <div className="line-highlights" aria-hidden>
+        <div className="code-block-content code-block-content-scroll scrollbar-hide">
+          <div className="code-block-inner">
+            <SyntaxHighlighter
+              language={language}
+              style={oneDark}
+              showLineNumbers={false}
+              customStyle={{
+                margin: 0,
+                padding: '1rem 1rem 1rem 0.5rem',
+                background: 'var(--bg-code)',
+                fontSize: '0.8125rem',
+                lineHeight: `${lineHeightRem}rem`,
+                fontFamily: 'var(--font-mono)',
+                borderRadius: '0 0 8px 8px',
+                whiteSpace: 'pre',
+                minWidth: 'min-content',
+              }}
+              codeTagProps={{
+                style: {
+                  fontFamily: 'inherit',
+                  whiteSpace: 'pre',
+                },
+              }}
+              lineNumberStyle={{ minWidth: '2em' }}
+              wrapLongLines={false}
+            >
+              {code}
+            </SyntaxHighlighter>
+            {highlightLines.length > 0 && highlightKind !== 'none' && (
+              <div className="line-highlights" aria-hidden>
               {code.split('\n').map((_, i) => {
                 const lineNum = i + 1
                 const isProblem =
@@ -121,6 +120,7 @@ export function CodeBlock({
               })}
             </div>
           )}
+          </div>
         </div>
       </div>
     </motion.div>
